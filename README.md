@@ -115,3 +115,5 @@ File EOF
 
        0,742850663 seconds time elapsed
 ```
+
+Results on a 416 Mb file are [in a Gist](https://gist.github.com/badboy/24d4ba25679afd1b576d).
