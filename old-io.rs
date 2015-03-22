@@ -19,12 +19,15 @@ fn main() {
     println!("len: {}", len);
     let len = len.parse::<usize>().unwrap();
 
+    let mut total_read = 0;
     loop {
         match reader.read_exact(len) {
             Ok(v) => {
+                total_read += len;
                 drop(v);
             },
             Err(e) => {
+                println!("total read: {}", total_read);
                 if e.kind == IoErrorKind::EndOfFile {
                     println!("File EOF");
                     return;
