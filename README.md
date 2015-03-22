@@ -28,44 +28,47 @@ $ make perf
 perf stat ./new-io 40mb.rdb 10
 reading file '40mb.rdb'
 len: 10
-File EOF
+total read: 6789100
+Error occured: Error { repr: Custom(Custom { kind: Other, desc: "Premature EOF", detail: None }) }
 
  Performance counter stats for './new-io 40mb.rdb 10':
 
-        195,592509      task-clock (msec)         #    0,996 CPUs utilized          
-                 1      context-switches          #    0,005 K/sec                  
-                 1      cpu-migrations            #    0,005 K/sec                  
-                90      page-faults               #    0,460 K/sec                  
-       361.193.546      cycles                    #    1,847 GHz                    
-        68.513.968      stalled-cycles-frontend   #   18,97% frontend cycles idle   
-        17.128.221      stalled-cycles-backend    #    4,74% backend  cycles idle   
-       854.905.162      instructions              #    2,37  insns per cycle        
-                                                  #    0,08  stalled cycles per insn
-       200.417.645      branches                  # 1024,669 M/sec                  
-           703.271      branch-misses             #    0,35% of all branches        
+         51,792310      task-clock (msec)         #    0,988 CPUs utilized
+                 0      context-switches          #    0,000 K/sec
+                 1      cpu-migrations            #    0,019 K/sec
+                91      page-faults               #    0,002 M/sec
+        76.092.295      cycles                    #    1,469 GHz
+        17.007.436      stalled-cycles-frontend   #   22,35% frontend cycles idle
+         4.666.648      stalled-cycles-backend    #    6,13% backend  cycles idle
+       198.183.724      instructions              #    2,60  insns per cycle
+                                                  #    0,09  stalled cycles per insn
+        40.159.421      branches                  #  775,394 M/sec
+            23.136      branch-misses             #    0,06% of all branches
 
-       0,196332262 seconds time elapsed
+       0,052395574 seconds time elapsed
 
 perf stat ./old-io 40mb.rdb 10
 reading file '40mb.rdb'
 len: 10
+total read: 6789100
 File EOF
 
  Performance counter stats for './old-io 40mb.rdb 10':
 
-         66,669576      task-clock (msec)         #    0,987 CPUs utilized          
-                 4      context-switches          #    0,060 K/sec                  
-                 2      cpu-migrations            #    0,030 K/sec                  
-                93      page-faults               #    0,001 M/sec                  
-        74.708.520      cycles                    #    1,121 GHz                    
-        15.413.747      stalled-cycles-frontend   #   20,63% frontend cycles idle   
-         3.201.621      stalled-cycles-backend    #    4,29% backend  cycles idle   
-       191.248.318      instructions              #    2,56  insns per cycle        
+         38,478493      task-clock (msec)         #    0,990 CPUs utilized
+                 0      context-switches          #    0,000 K/sec
+                 1      cpu-migrations            #    0,026 K/sec
+                92      page-faults               #    0,002 M/sec
+        73.208.076      cycles                    #    1,903 GHz
+        15.416.222      stalled-cycles-frontend   #   21,06% frontend cycles idle
+         3.199.782      stalled-cycles-backend    #    4,37% backend  cycles idle
+       191.857.108      instructions              #    2,62  insns per cycle
                                                   #    0,08  stalled cycles per insn
-        40.266.057      branches                  #  603,964 M/sec                  
-            22.353      branch-misses             #    0,06% of all branches        
+        40.252.577      branches                  # 1046,106 M/sec
+            22.051      branch-misses             #    0,05% of all branches
 
-       0,067532663 seconds time elapsed
+       0,038877979 seconds time elapsed
+
 ```
 
 Unoptimized build:
@@ -76,44 +79,46 @@ $ make perf
 perf stat ./new-io 40mb.rdb 10
 reading file '40mb.rdb'
 len: 10
-File EOF
+total read: 6789100
+Error occured: Error { repr: Custom(Custom { kind: Other, desc: "Premature EOF", detail: None }) }
 
  Performance counter stats for './new-io 40mb.rdb 10':
 
-       1409,771195      task-clock (msec)         #    0,999 CPUs utilized          
-                46      context-switches          #    0,033 K/sec                  
-                 7      cpu-migrations            #    0,005 K/sec                  
-                93      page-faults               #    0,066 K/sec                  
-     3.262.241.400      cycles                    #    2,314 GHz                    
-     1.229.369.572      stalled-cycles-frontend   #   37,68% frontend cycles idle   
-       148.728.645      stalled-cycles-backend    #    4,56% backend  cycles idle   
-     5.509.870.855      instructions              #    1,69  insns per cycle        
-                                                  #    0,22  stalled cycles per insn
-     1.263.217.302      branches                  #  896,044 M/sec                  
-         1.387.391      branch-misses             #    0,11% of all branches        
+        860,784463      task-clock (msec)         #    0,999 CPUs utilized
+                12      context-switches          #    0,014 K/sec
+                15      cpu-migrations            #    0,017 K/sec
+                93      page-faults               #    0,108 K/sec
+     2.058.030.887      cycles                    #    2,391 GHz
+       877.873.779      stalled-cycles-frontend   #   42,66% frontend cycles idle
+        85.669.427      stalled-cycles-backend    #    4,16% backend  cycles idle
+     3.466.656.663      instructions              #    1,68  insns per cycle
+                                                  #    0,25  stalled cycles per insn
+       710.519.986      branches                  #  825,433 M/sec
+           708.532      branch-misses             #    0,10% of all branches
 
-       1,410970533 seconds time elapsed
+       0,861473071 seconds time elapsed
 
 perf stat ./old-io 40mb.rdb 10
 reading file '40mb.rdb'
 len: 10
+total read: 6789100
 File EOF
 
  Performance counter stats for './old-io 40mb.rdb 10':
 
-        741,191122      task-clock (msec)         #    0,998 CPUs utilized          
-                47      context-switches          #    0,063 K/sec                  
-                 2      cpu-migrations            #    0,003 K/sec                  
-                91      page-faults               #    0,123 K/sec                  
-     1.701.845.437      cycles                    #    2,296 GHz                    
-       667.249.110      stalled-cycles-frontend   #   39,21% frontend cycles idle   
-        81.374.644      stalled-cycles-backend    #    4,78% backend  cycles idle   
-     2.824.367.181      instructions              #    1,66  insns per cycle        
-                                                  #    0,24  stalled cycles per insn
-       590.932.539      branches                  #  797,274 M/sec                  
-           704.589      branch-misses             #    0,12% of all branches        
+        674,233347      task-clock (msec)         #    0,999 CPUs utilized
+                28      context-switches          #    0,042 K/sec
+                 4      cpu-migrations            #    0,006 K/sec
+                93      page-faults               #    0,138 K/sec
+     1.678.672.215      cycles                    #    2,490 GHz
+       647.754.789      stalled-cycles-frontend   #   38,59% frontend cycles idle
+        75.167.751      stalled-cycles-backend    #    4,48% backend  cycles idle
+     2.832.107.349      instructions              #    1,69  insns per cycle
+                                                  #    0,23  stalled cycles per insn
+       592.338.044      branches                  #  878,536 M/sec
+           709.566      branch-misses             #    0,12% of all branches
 
-       0,742850663 seconds time elapsed
+       0,674874353 seconds time elapsed
 ```
 
 Results on a 416 Mb file are [in a Gist](https://gist.github.com/badboy/24d4ba25679afd1b576d).
