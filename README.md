@@ -5,6 +5,10 @@ While porting [rdb-rs](https://github.com/badboy/rdb-rs) I came across huge perf
 This repository contains a small test case with the [old](old-io.rs) and [new](new-io.rs) module in use.
 I know my implementation of `read_exact` is far from perfect or optimized and I wonder how to do it properly.
 
+Update after short discussion in the IRC channel:
+
+Thanks to the [capnproto-rust](https://github.com/dwrensha/capnproto-rust/blob/6c755f3bf3f60d6b88dda5d30fb11b4ac4b3b8c2/src/serialize.rs) implementation by @dwrensha this is now as fast as the old one (and hopefully correct as well).
+
 Compile with:
 
 ```
